@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <title>Bomenkaart</title>
 
-<link rel="stylesheet" href="https://unpkg
-
-<style>
+<link rel="stylesheet"
+      href="https://unpkgle>
 html, body, #map {
     height: 100%;
     margin: 0;
@@ -17,27 +16,30 @@ html, body, #map {
 
 <div id="map"></div>
 
-<script/unpkg.com/leaflet/dist/leaflet.js
+pkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
 
 const map = L.map('map').setView([52.2, 6.1], 11);
 
 L.tileLayer(
-  'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; OpenStreetMap'
+  }
 ).addTo(map);
 
 fetch('bomenwater_provincie.csv')
   .then(r => r.text())
   .then(text => {
 
-    const regels = text.split('\n');
+    const regels = text.trim().split('\n');
 
     for(let i = 1; i < regels.length; i++) {
 
       const kolommen = regels[i].split(',');
 
-      if(kolommen.length < 6) continue;
+      if(kolommen.length < 5) continue;
 
       const lon = parseFloat(kolommen[0]);
       const lat = parseFloat(kolommen[1]);
@@ -54,7 +56,7 @@ fetch('bomenwater_provincie.csv')
         .bindPopup(`
           <b>${straat || 'Boom'}</b><br>
           GID: ${gid}<br><br>
-          <arouteUrl}
+          ${routeUrl}
             Navigeer
           </a>
         `);
