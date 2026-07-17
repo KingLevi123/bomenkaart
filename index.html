@@ -1,70 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Bomenkaart</title>
+  <meta charset="utf-8">
+  <title>Test</title>
 
-<link rel="stylesheet" href="https
-<style>
-html, body, #map {
-    height: 100%;
-    margin: 0;
-}
-</style>
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaf
 
-</head>
-<body>
-
-<div id="map"></div>
-
-/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unet@1.9.4/dist/leaflet.js
 
 <script>
-
-const map = L.map('map').setView([52.2, 6.1], 11);
-
-L.tileLayer(
-  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution: '&copy; OpenStreetMap'
-  }
-).addTo(map);
-
-fetch('bomenwater_provincie.csv')
-.then(response => response.text())
-.then(text => {
-
-    const regels = text.trim().split('\n');
-
-    for(let i = 1; i < regels.length; i++) {
-
-        const kolommen = regels[i].split(',');
-
-        if(kolommen.length < 5) continue;
-
-        const lon = parseFloat(kolommen[0]);
-        const lat = parseFloat(kolommen[1]);
-        const gid = kolommen[2];
-        const straat = kolommen[4];
-
-        if(isNaN(lat) || isNaN(lon)) continue;
-
-        const routeUrl =
-            "https://www.google.com/maps/dir/?api=1&destination="
-            + lat + "," + lon;
-
-        L.marker([lat, lon])
-            .addTo(map)
-            .bindPopup(
-                "<b>" + straat + "</b><br>" +
-                "GID: " + gid + "<br><br>" +
-                "<a href='" + routeUrl +
-                "' target='_blank'>Navigeer</a>"
-            );
-    }
-
-});
-
+alert(typeof L);
 </script>
 
 </body>
