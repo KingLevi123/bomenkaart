@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <title>Bomenkaart</title>
 
-<link rel="stylesheet"
-      href="https://unpkgle>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.js"/>
+
+<style>
 html, body, #map {
     height: 100%;
     margin: 0;
@@ -16,7 +17,7 @@ html, body, #map {
 
 <div id="map"></div>
 
-pkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
 
@@ -53,15 +54,13 @@ fetch('bomenwater_provincie.csv')
 
       L.marker([lat, lon])
         .addTo(map)
-        .bindPopup(`
-          <b>${straat || 'Boom'}</b><br>
-          GID: ${gid}<br><br>
-          ${routeUrl}
-            Navigeer
-          </a>
-        `);
+        .bindPopup(
+          `<b>${straat}</b><br>
+           GID: ${gid}<br><br>
+           <a href="${routeUrl      Navigeer
+           </a>`
+        );
     }
-
   });
 
 </script>
