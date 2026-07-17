@@ -4,8 +4,7 @@
 <meta charset="utf-8">
 <title>Bomenkaart</title>
 
-pkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
+<link rel="stylesheet" href="https
 <style>
 html, body, #map {
     height: 100%;
@@ -18,7 +17,7 @@ html, body, #map {
 
 <div id="map"></div>
 
-https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 
@@ -41,18 +40,14 @@ fetch('bomenwater_provincie.csv')
 
         const kolommen = regels[i].split(',');
 
-        if(kolommen.length < 5) {
-            continue;
-        }
+        if(kolommen.length < 5) continue;
 
         const lon = parseFloat(kolommen[0]);
         const lat = parseFloat(kolommen[1]);
         const gid = kolommen[2];
         const straat = kolommen[4];
 
-        if(isNaN(lat) || isNaN(lon)) {
-            continue;
-        }
+        if(isNaN(lat) || isNaN(lon)) continue;
 
         const routeUrl =
             "https://www.google.com/maps/dir/?api=1&destination="
