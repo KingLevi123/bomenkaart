@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Bomenkaart</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.js"/>
+pkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
 html, body, #map {
@@ -12,12 +12,13 @@ html, body, #map {
     margin: 0;
 }
 </style>
+
 </head>
 <body>
 
 <div id="map"></div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 
@@ -31,37 +32,43 @@ L.tileLayer(
 ).addTo(map);
 
 fetch('bomenwater_provincie.csv')
-  .then(r => r.text())
-  .then(text => {
+.then(response => response.text())
+.then(text => {
 
     const regels = text.trim().split('\n');
 
     for(let i = 1; i < regels.length; i++) {
 
-      const kolommen = regels[i].split(',');
+        const kolommen = regels[i].split(',');
 
-      if(kolommen.length < 5) continue;
+        if(kolommen.length < 5) {
+            continue;
+        }
 
-      const lon = parseFloat(kolommen[0]);
-      const lat = parseFloat(kolommen[1]);
-      const gid = kolommen[2];
-      const straat = kolommen[4];
+        const lon = parseFloat(kolommen[0]);
+        const lat = parseFloat(kolommen[1]);
+        const gid = kolommen[2];
+        const straat = kolommen[4];
 
-      if(isNaN(lat) || isNaN(lon)) continue;
+        if(isNaN(lat) || isNaN(lon)) {
+            continue;
+        }
 
-      const routeUrl =
-        `https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`;
+        const routeUrl =
+            "https://www.google.com/maps/dir/?api=1&destination="
+            + lat + "," + lon;
 
-      L.marker([lat, lon])
-        .addTo(map)
-        .bindPopup(
-          `<b>${straat}</b><br>
-           GID: ${gid}<br><br>
-           <a href="${routeUrl      Navigeer
-           </a>`
-        );
+        L.marker([lat, lon])
+            .addTo(map)
+            .bindPopup(
+                "<b>" + straat + "</b><br>" +
+                "GID: " + gid + "<br><br>" +
+                "<a href='" + routeUrl +
+                "' target='_blank'>Navigeer</a>"
+            );
     }
-  });
+
+});
 
 </script>
 
